@@ -1,0 +1,748 @@
+{
+  "cod-profit-calculator": {
+    "h1": "COD profit calculator",
+    "intro": "Cash on delivery profit is decided after the order: by how many orders get confirmed and how many the courier delivers. Enter your funnel and costs to see what you keep after returns and ads.",
+    "formula": "Confirmed = Placed × confirmation rate\nDelivered = Confirmed × delivery rate\nReturned = Confirmed − Delivered\nRevenue = Delivered × order value\nProfit = Revenue − COD fee\n  − Delivered × (COGS + shipping)\n  − Returned × (shipping + return fee)\n  − Returned × COGS × unsellable share\n  − Ad spend",
+    "inputs": {
+      "placed": "Orders placed",
+      "price": "Average order value",
+      "cogs": "Product cost per order",
+      "shipping": "Shipping per shipment",
+      "returnFee": "Return fee per RTO",
+      "codFee": "COD collection fee",
+      "confirm": "Confirmation rate",
+      "deliver": "Delivery rate",
+      "ads": "Ad spend",
+      "unsellable": "Returned stock you can't resell"
+    },
+    "outputs": {
+      "profit": "Net profit after RTO and ads",
+      "delivered": "Delivered orders",
+      "returned": "Returned orders (RTO)",
+      "revenue": "Cash collected",
+      "returnsCost": "Cost of returns",
+      "perDelivered": "Profit per delivered order",
+      "adsPerDelivered": "Ad cost per delivered order"
+    }
+  },
+  "margin-markup-calculator": {
+    "h1": "Margin and markup calculator",
+    "intro": "Margin and markup use the same two numbers and give different answers. Enter your cost and price to see both, plus the price you need to hit a target margin.",
+    "formula": "Margin = (Price − Cost) ÷ Price\nMarkup = (Price − Cost) ÷ Cost\nPrice for a target margin = Cost ÷ (1 − margin)\nMax cost at a target margin = Price × (1 − margin)",
+    "inputs": {
+      "cost": "Product cost",
+      "price": "Selling price",
+      "target": "Target margin"
+    },
+    "outputs": {
+      "margin": "Margin",
+      "profit": "Profit per unit",
+      "markup": "Markup",
+      "priceForTarget": "Price for your target margin",
+      "maxCost": "Max cost at your target margin"
+    }
+  },
+  "break-even-calculator": {
+    "h1": "Break-even calculator",
+    "intro": "Find how many orders a month you need before the business stops losing money, how many you need for a profit target, and where you stand today.",
+    "formula": "Contribution = AOV − variable cost − ad cost per order\nBreak-even orders = ⌈Fixed costs ÷ Contribution⌉\nOrders for a profit target = ⌈(Fixed + target) ÷ Contribution⌉\nMargin of safety = (Current orders − Break-even) ÷ Current orders",
+    "inputs": {
+      "fixed": "Fixed costs per month",
+      "aov": "Average order value",
+      "variable": "Variable cost per order",
+      "adCost": "Ad cost per order",
+      "orders": "Orders this month",
+      "target": "Monthly profit target"
+    },
+    "outputs": {
+      "breakEvenOrders": "Break-even orders per month",
+      "perDay": "Break-even orders per day",
+      "breakEvenRevenue": "Break-even revenue",
+      "ordersForTarget": "Orders for your profit target",
+      "profitNow": "Profit at your current orders",
+      "safety": "Margin of safety",
+      "contribution": "Contribution per order"
+    }
+  },
+  "product-pricing-calculator": {
+    "h1": "Product pricing calculator",
+    "intro": "Work back from your costs to the price that keeps the margin you want, after shipping, payment fees and your share of fixed costs.",
+    "formula": "Fixed per unit = Fixed costs ÷ units per month\nPrice = (COGS + shipping + fixed per unit + fixed fee)\n        ÷ (1 − fee % − target margin)\nPrice with tax = Price × (1 + tax rate)",
+    "inputs": {
+      "cogs": "Product cost per unit",
+      "shipping": "Shipping per unit",
+      "fixed": "Fixed costs per month",
+      "units": "Units sold per month",
+      "feePct": "Payment fee",
+      "feeFixed": "Fixed fee per order",
+      "margin": "Target margin",
+      "tax": "Sales tax / VAT"
+    },
+    "outputs": {
+      "price": "Price to charge",
+      "priceWithTax": "Price including tax",
+      "fixedPerUnit": "Fixed cost per unit",
+      "feesPerUnit": "Fees per unit",
+      "profitPerUnit": "Profit per unit"
+    }
+  },
+  "contribution-margin-calculator": {
+    "h1": "Contribution margin calculator",
+    "intro": "See what one order really leaves after product cost, shipping, payment fees and the ad cost to get it, and how much ad cost an order can carry.",
+    "formula": "Contribution = Price − COGS − shipping − Price × fee % − ad cost\nContribution ratio = Contribution ÷ Price\nMax ad cost per order = Price − COGS − shipping − fees\nBreak-even ROAS = Price ÷ max ad cost per order",
+    "inputs": {
+      "price": "Selling price",
+      "cogs": "Product cost",
+      "shipping": "Shipping",
+      "feePct": "Payment fee",
+      "adCost": "Ad cost per order",
+      "orders": "Orders per month"
+    },
+    "outputs": {
+      "contribution": "Contribution per order",
+      "ratio": "Contribution ratio",
+      "monthly": "Monthly contribution",
+      "maxAdCost": "Max ad cost per order",
+      "breakEvenRoas": "Break-even ROAS"
+    }
+  },
+  "landed-cost-calculator": {
+    "h1": "Landed cost calculator",
+    "intro": "Your supplier price is not your product cost. Add freight, customs duty, clearance and local delivery to see what each unit costs when it reaches your shelf.",
+    "formula": "Freight per unit = Freight ÷ units\nDuty per unit = (Supplier price + freight per unit) × duty %   (CIF)\n             = Supplier price × duty %                        (FOB)\nLanded = Supplier price + freight + duty + clearance + local delivery (per unit)\nMax supplier price = (Price × (1 − fee % − target) − freight × (1 + duty if CIF)\n                     − clearance − local) ÷ (1 + duty %)",
+    "inputs": {
+      "supplier": "Supplier price per unit",
+      "units": "Units in the shipment",
+      "freight": "Freight for the shipment",
+      "duty": "Customs duty",
+      "basis": "Duty charged on",
+      "clearance": "Clearance and fees",
+      "local": "Local delivery to warehouse",
+      "price": "Selling price",
+      "feePct": "Payment fee",
+      "target": "Target contribution"
+    },
+    "outputs": {
+      "landed": "Landed cost per unit",
+      "load": "Added on top of supplier price",
+      "dutyPerUnit": "Duty per unit",
+      "freightPerUnit": "Freight per unit",
+      "maxSupplier": "Max supplier price for your target"
+    },
+    "options": {
+      "cif": "Goods + freight (CIF)",
+      "fob": "Goods only (FOB)"
+    }
+  },
+  "payment-fee-calculator": {
+    "h1": "Payment fee calculator",
+    "intro": "See what your payment gateway takes each month, the rate you really pay once fixed fees are added, and what moving sales off a marketplace would save.",
+    "formula": "Gateway fees = Revenue × rate + Orders × fixed fee\nTax on fees = Gateway fees × tax rate\nEffective rate = (Fees + tax) ÷ Revenue\nMoved sales = Marketplace sales × 12 × share moved\nYearly saving = Moved × commission − Moved × gateway rate − site cost",
+    "inputs": {
+      "revenue": "Online revenue per month",
+      "orders": "Orders per month",
+      "rate": "Gateway rate",
+      "fixed": "Fixed fee per order",
+      "taxOnFees": "Tax on fees",
+      "marketplace": "Marketplace sales per month",
+      "commission": "Marketplace commission",
+      "moved": "Share moved to your site",
+      "siteCost": "Your site cost per year"
+    },
+    "outputs": {
+      "monthlyFees": "Gateway cost per month",
+      "effectiveRate": "Effective fee rate",
+      "taxOnFees": "Tax on fees",
+      "commissionSaved": "Commission saved per year",
+      "yearlySaving": "Yearly saving from moving sales"
+    }
+  },
+  "wholesale-margin-calculator": {
+    "h1": "Wholesale margin calculator",
+    "intro": "Check that your wholesale price leaves enough for you and for the retailer, and compare it with selling the same product yourself.",
+    "formula": "Your wholesale margin = (Wholesale − Cost) ÷ Wholesale\nWholesale markup = (Wholesale − Cost) ÷ Cost\nRetailer margin = (Retail − Wholesale) ÷ Retail\nDirect margin = (Retail − Cost) ÷ Retail",
+    "inputs": {
+      "cost": "Your cost per unit",
+      "wholesale": "Wholesale price",
+      "retail": "Retail price"
+    },
+    "outputs": {
+      "wholesaleMargin": "Your wholesale margin",
+      "profitPerUnit": "Your profit per unit",
+      "markup": "Wholesale markup",
+      "retailerMargin": "Retailer margin",
+      "directMargin": "Your margin selling direct"
+    }
+  },
+  "roas-calculator": {
+    "h1": "ROAS calculator",
+    "intro": "A ROAS number means nothing until you know the line it has to beat. Enter spend, revenue and margin to see your ROAS next to your break-even and target ROAS.",
+    "formula": "ROAS = Revenue ÷ Ad spend\nBreak-even ROAS = 1 ÷ margin\nTarget ROAS = 1 ÷ (margin − target net margin)\nProfit after ads = Revenue × margin − Ad spend\nPOAS = Profit after ads ÷ Ad spend",
+    "inputs": {
+      "spend": "Ad spend",
+      "revenue": "Revenue from ads",
+      "margin": "Margin before ads",
+      "netTarget": "Target net margin"
+    },
+    "outputs": {
+      "roas": "Your ROAS",
+      "breakEven": "Break-even ROAS",
+      "targetRoas": "ROAS for your target net margin",
+      "profit": "Profit after ads",
+      "poas": "POAS (profit on ad spend)",
+      "adShare": "Ad spend as share of revenue"
+    }
+  },
+  "max-cpa-calculator": {
+    "h1": "Max cost per order calculator",
+    "intro": "Find the most you can pay for one order on Meta or TikTok and still make money, for cash on delivery with returns and for prepaid orders.",
+    "formula": "Profit per delivered = Price − COGS − shipping − fees\nPrepaid max CPA = Profit per delivered\nCOD max per placed order = confirm % × (deliver % × profit per delivered\n                           − (1 − deliver %) × (shipping + return fee))\nMax CPC = Max per order × click → order rate",
+    "inputs": {
+      "price": "Selling price",
+      "cogs": "Product cost",
+      "shipping": "Shipping per shipment",
+      "fees": "Other fees per order",
+      "confirm": "Confirmation rate",
+      "deliver": "Delivery rate",
+      "returnFee": "Return fee per RTO",
+      "cvr": "Click → order rate"
+    },
+    "outputs": {
+      "maxPerOrder": "Max ad cost per placed order (COD)",
+      "ignoringReturns": "Same, without return costs",
+      "prepaid": "Max CPA for prepaid orders",
+      "maxCpc": "Max CPC (COD)",
+      "maxCpcPrepaid": "Max CPC (prepaid)"
+    }
+  },
+  "ad-budget-calculator": {
+    "h1": "Ad budget calculator",
+    "intro": "Start from the revenue you want, get the ad budget it takes, then check whether your CPM, click rate and conversion rate can actually deliver it.",
+    "formula": "Budget = Revenue goal ÷ target ROAS\nDaily budget = Budget ÷ 30.4\nClicks = Budget ÷ CPM × 1,000 × CTR\nOrders = Clicks × conversion rate\nFunnel revenue = Orders × AOV",
+    "inputs": {
+      "goal": "Revenue goal per month",
+      "roas": "Target ROAS",
+      "cpm": "CPM",
+      "ctr": "Click-through rate",
+      "cvr": "Conversion rate",
+      "aov": "Average order value"
+    },
+    "outputs": {
+      "budget": "Monthly ad budget",
+      "daily": "Daily budget",
+      "funnelRevenue": "Revenue your funnel delivers",
+      "goalReached": "Share of goal reached",
+      "orders": "Orders",
+      "costPerOrder": "Cost per order",
+      "clicks": "Clicks"
+    }
+  },
+  "mer-calculator": {
+    "h1": "MER calculator",
+    "intro": "MER (marketing efficiency ratio) checks all your marketing against all your revenue, so no platform can take credit for sales it didn't make.",
+    "formula": "Marketing = Paid ads + email + agency + tools\nMER = Total revenue ÷ Marketing\nBreak-even MER = 1 ÷ margin\nProfit after marketing = Revenue × margin − Marketing\nOver-claim = Platform revenue − Total revenue × (platform spend ÷ paid spend)",
+    "inputs": {
+      "revenue": "Total revenue",
+      "paid": "Paid ads",
+      "email": "Email and SMS",
+      "agency": "Agency fees",
+      "tools": "Marketing tools",
+      "margin": "Margin before marketing",
+      "metaSpend": "Meta spend",
+      "metaRevenue": "Meta-reported revenue"
+    },
+    "outputs": {
+      "mer": "MER",
+      "breakEven": "Break-even MER",
+      "paidRoas": "Blended ROAS (paid only)",
+      "share": "Marketing as share of revenue",
+      "profitAfter": "Profit after marketing",
+      "metaRoas": "Meta-reported ROAS",
+      "overClaim": "Revenue Meta claims beyond its share"
+    }
+  },
+  "ad-metrics-calculator": {
+    "h1": "CPA, CPM, CPC and CTR calculator",
+    "intro": "Turn five numbers from any ad account into the six metrics that explain a campaign: CPA, CPM, CTR, CPC, conversion rate and ROAS.",
+    "formula": "CPM = Spend ÷ Impressions × 1,000\nCTR = Clicks ÷ Impressions\nCPC = Spend ÷ Clicks\nConversion rate = Orders ÷ Clicks\nCPA = Spend ÷ Orders\nROAS = Revenue ÷ Spend",
+    "inputs": {
+      "spend": "Ad spend",
+      "impressions": "Impressions",
+      "clicks": "Clicks",
+      "orders": "Orders",
+      "revenue": "Revenue"
+    },
+    "outputs": {
+      "cpa": "CPA (cost per order)",
+      "cpm": "CPM",
+      "ctr": "CTR",
+      "cpc": "CPC",
+      "cvr": "Conversion rate",
+      "roas": "ROAS"
+    }
+  },
+  "ad-frequency-calculator": {
+    "h1": "Ad frequency calculator",
+    "intro": "See how often the same people see your ads, per week and per creative, and how many days each creative has before it hits the limit you set.",
+    "formula": "Frequency = Impressions ÷ Reach\nWeekly frequency = Frequency ÷ days × 7\nPer creative = Frequency ÷ active creatives\nDays to limit = Limit ÷ (Frequency ÷ days ÷ creatives)",
+    "inputs": {
+      "impressions": "Impressions",
+      "reach": "Reach (people)",
+      "days": "Days in the period",
+      "spend": "Spend",
+      "creatives": "Active creatives",
+      "limit": "Your frequency limit"
+    },
+    "outputs": {
+      "frequency": "Average frequency",
+      "weekly": "Weekly frequency",
+      "perCreative": "Frequency per creative",
+      "daysToLimit": "Days until a creative hits your limit",
+      "cpm": "CPM",
+      "costPerPerson": "Cost per person reached"
+    }
+  },
+  "influencer-roi-calculator": {
+    "h1": "Influencer ROI calculator",
+    "intro": "Check whether a creator paid back: ROI, ROAS and cost per order from the fee and product you sent, plus what the same reach would cost in ads.",
+    "formula": "Cost = Fee + product sent\nROI = (Revenue − Cost) ÷ Cost\nROAS = Revenue ÷ Cost\nCost per order = Cost ÷ Orders\nMedia value = Impressions × your CPM ÷ 1,000",
+    "inputs": {
+      "fee": "Creator fee",
+      "product": "Product sent (cost)",
+      "impressions": "Impressions",
+      "clicks": "Clicks",
+      "orders": "Orders (code or link)",
+      "revenue": "Revenue",
+      "cpm": "Your normal CPM"
+    },
+    "outputs": {
+      "roi": "ROI",
+      "roas": "ROAS",
+      "costPerOrder": "Cost per order",
+      "costPerClick": "Cost per click",
+      "ctr": "Click-through rate",
+      "mediaValue": "Same reach as paid ads"
+    }
+  },
+  "courier-cost-calculator": {
+    "h1": "Courier cost calculator",
+    "intro": "The cheapest courier is not always the one that earns you the most. Compare three couriers by cost per delivered order and profit per shipment, with returns included.",
+    "formula": "Cost per shipment = Fee + (1 − delivery rate) × return fee\nCost per delivered order = Cost per shipment ÷ delivery rate\nProfit per shipment = Delivery rate × (order value − COGS) − cost per shipment\nMonthly gap = (Best − cheapest profit per shipment) × shipments",
+    "inputs": {
+      "price": "Order value",
+      "cogs": "Product cost",
+      "shipments": "Shipments per month",
+      "aFee": "Courier A: fee per shipment",
+      "aReturn": "Courier A: return fee",
+      "aRate": "Courier A: delivery rate",
+      "bFee": "Courier B: fee per shipment",
+      "bReturn": "Courier B: return fee",
+      "bRate": "Courier B: delivery rate",
+      "cFee": "Courier C: fee per shipment",
+      "cReturn": "Courier C: return fee",
+      "cRate": "Courier C: delivery rate"
+    },
+    "outputs": {
+      "best": "Most profit per shipment",
+      "cheapest": "Cheapest per shipment",
+      "gap": "Monthly gap, best vs cheapest",
+      "aPerDelivered": "Courier A: cost per delivered order",
+      "aProfit": "Courier A: profit per shipment",
+      "bPerDelivered": "Courier B: cost per delivered order",
+      "bProfit": "Courier B: profit per shipment",
+      "cPerDelivered": "Courier C: cost per delivered order",
+      "cProfit": "Courier C: profit per shipment"
+    },
+    "choices": {
+      "a": "Courier A",
+      "b": "Courier B",
+      "c": "Courier C"
+    }
+  },
+  "returns-cost-calculator": {
+    "h1": "Returns cost calculator",
+    "intro": "A return costs more than the refund suggests and less than many calculators claim. See the real cost per return and what your return rate does to break-even ROAS.",
+    "formula": "Margin per order = AOV − COGS − shipping out\nOut of pocket per return = shipping out + return shipping + handling\n                           + COGS × (1 − resold %)\nCost per return = Margin + out of pocket\nKept per order = (1 − rate) × margin − rate × out of pocket\nBreak-even ROAS = AOV ÷ kept per order\nMax return rate = Margin ÷ (margin + out of pocket)",
+    "inputs": {
+      "orders": "Orders per month",
+      "rate": "Return rate",
+      "aov": "Average order value",
+      "cogs": "Product cost",
+      "out": "Shipping out",
+      "back": "Return shipping",
+      "handling": "Handling per return",
+      "resold": "Returned stock you resell"
+    },
+    "outputs": {
+      "monthly": "Cost of returns per month",
+      "perReturn": "Cost per return",
+      "roasBefore": "Break-even ROAS without returns",
+      "roasAfter": "Break-even ROAS with returns",
+      "maxRate": "Return rate where profit hits zero"
+    }
+  },
+  "discount-calculator": {
+    "h1": "Discount impact calculator",
+    "intro": "Before you run a sale, see how many extra orders the discount needs just to earn the same profit, and what happens at the lift you expect.",
+    "formula": "Margin m = (Price − Cost) ÷ Price\nOrders needed = d ÷ (m − d)\nProfit at full price = (Price − Cost) × Orders\nProfit with discount = (Price × (1 − d) − Cost) × Orders × (1 + lift)\nDiscount cost per extra order = Discount given ÷ extra orders",
+    "inputs": {
+      "price": "Price",
+      "cost": "Product cost",
+      "discount": "Discount",
+      "orders": "Orders without the discount",
+      "lift": "Expected order lift"
+    },
+    "outputs": {
+      "liftNeeded": "Extra orders needed to break even",
+      "change": "Profit change",
+      "fullProfit": "Profit at full price",
+      "promoProfit": "Profit with the discount",
+      "costPerExtra": "Discount cost per extra order"
+    }
+  },
+  "free-shipping-threshold-calculator": {
+    "h1": "Free shipping threshold calculator",
+    "intro": "Set free shipping where the extra order value pays for the shipping you absorb. See the threshold your margin supports and test any threshold against it.",
+    "formula": "Suggested threshold = AOV + shipping ÷ margin (rounded up to 5)\nAOV lift = (Threshold − AOV) × share reaching it\nShipping absorbed = Orders × share × shipping\nExtra profit = Orders × AOV lift × margin\nNet = Extra profit − shipping absorbed",
+    "inputs": {
+      "aov": "Current AOV",
+      "shipping": "Shipping cost per order",
+      "margin": "Margin",
+      "orders": "Orders per month",
+      "threshold": "Threshold to test",
+      "reach": "Orders that will reach it"
+    },
+    "outputs": {
+      "suggested": "Suggested threshold",
+      "newAov": "New average order value",
+      "absorbed": "Shipping you absorb",
+      "extraProfit": "Extra gross profit",
+      "net": "Net change per month"
+    }
+  },
+  "upsell-calculator": {
+    "h1": "Upsell calculator",
+    "intro": "See what an upsell or cross-sell is worth: extra revenue and profit, the new average order value, and the effect over a year.",
+    "formula": "Extra revenue = Orders × take rate × upsell price\nExtra profit = Extra revenue × upsell margin\nNew AOV = AOV + take rate × upsell price",
+    "inputs": {
+      "orders": "Orders per month",
+      "aov": "Current AOV",
+      "price": "Upsell price",
+      "take": "Take rate",
+      "margin": "Upsell margin"
+    },
+    "outputs": {
+      "profit": "Extra profit per month",
+      "revenue": "Extra revenue per month",
+      "newAov": "New AOV",
+      "aovLift": "AOV increase",
+      "yearly": "Extra profit per year"
+    }
+  },
+  "bogo-calculator": {
+    "h1": "Buy X get Y calculator",
+    "intro": "See what a buy X get Y offer really costs you: the effective discount, the price per unit and your profit on the whole set.",
+    "formula": "Effective discount = Y ÷ (X + Y)\nCustomer pays = X × price\nProfit on the set = X × price − (X + Y) × cost\nMargin after offer = Profit ÷ customer pays",
+    "inputs": {
+      "buy": "Buy (X)",
+      "free": "Get free (Y)",
+      "price": "Unit price",
+      "cost": "Unit cost"
+    },
+    "outputs": {
+      "discount": "Effective discount",
+      "pays": "Customer pays",
+      "perUnit": "Price per unit",
+      "profit": "Your profit on the set",
+      "margin": "Margin after the offer",
+      "singleProfit": "Profit on one unit at full price"
+    }
+  },
+  "quantity-discount-calculator": {
+    "h1": "Quantity discount calculator",
+    "intro": "Check whether a 'buy 3, save 15%' tier earns more than selling one unit, and how many tier buyers need to be real upgrades for it to pay off.",
+    "formula": "Tier total = Qty × price × (1 − discount)\nTier profit = Tier total − qty × cost − order cost − fee % × tier total\nSingle profit = Price − cost − order cost − fee % × price\nPays off when upgraded share ≥ loss ÷ (gain + loss)",
+    "inputs": {
+      "price": "Unit price",
+      "cost": "Unit cost",
+      "orderCost": "Shipping and packing per order",
+      "feePct": "Payment fee",
+      "qty": "Tier quantity",
+      "discount": "Tier discount"
+    },
+    "outputs": {
+      "tierProfit": "Profit per tier order",
+      "singleProfit": "Profit per single-unit order",
+      "gain": "Gain versus a single unit",
+      "unitPrice": "Customer pays per unit",
+      "paysOffShare": "Pays off if this share of tier buyers are upgrades"
+    }
+  },
+  "free-gift-vs-discount-calculator": {
+    "h1": "Free gift vs discount calculator",
+    "intro": "Both offers push customers to spend more. Compare a free gift and a percentage discount at the same threshold and see which one keeps more profit.",
+    "formula": "Extra profit = (Threshold − AOV) × orders × margin\nWith gift = Extra profit − gift cost × orders\nWith discount = Extra profit − threshold × discount × orders",
+    "inputs": {
+      "aov": "Current AOV",
+      "threshold": "Order threshold",
+      "orders": "Orders per month",
+      "margin": "Margin",
+      "gift": "Gift cost",
+      "discount": "Discount at the threshold"
+    },
+    "outputs": {
+      "winner": "Keeps more profit",
+      "giftProfit": "Profit with the free gift",
+      "discountProfit": "Profit with the discount",
+      "difference": "Difference per month",
+      "jump": "AOV jump needed"
+    },
+    "choices": {
+      "gift": "Free gift",
+      "discount": "Discount"
+    }
+  },
+  "customer-lifetime-value-calculator": {
+    "h1": "Customer lifetime value calculator",
+    "intro": "Work out what one customer is worth over the time they buy from you, in revenue and in profit, and the most you can pay to win one.",
+    "formula": "Revenue CLV = AOV × orders per year × years\nProfit CLV = Revenue CLV × margin\nLTV:CAC = Profit CLV ÷ CAC\nMax CAC = Profit CLV ÷ target ratio",
+    "inputs": {
+      "aov": "Average order value",
+      "frequency": "Orders per year",
+      "years": "Years as a customer",
+      "margin": "Margin",
+      "cac": "Cost to acquire a customer",
+      "ratio": "Target LTV:CAC"
+    },
+    "outputs": {
+      "profitClv": "Profit CLV",
+      "revenueClv": "Revenue CLV",
+      "ltvCac": "LTV:CAC",
+      "maxCac": "Max CAC at your target ratio",
+      "perYear": "Revenue per customer per year"
+    }
+  },
+  "customer-acquisition-cost-calculator": {
+    "h1": "Customer acquisition cost calculator",
+    "intro": "See what a new customer costs you, whether the first order pays it back, and how many months it takes to earn it back if not.",
+    "formula": "CAC = Marketing spend ÷ new customers\nProfit per order = AOV × margin\nFirst-order profit = Profit per order − CAC\nPayback months = CAC ÷ (Profit per order × orders per year ÷ 12)\nLTV:CAC = Profit per order × orders per year × years ÷ CAC",
+    "inputs": {
+      "spend": "Marketing spend",
+      "customers": "New customers",
+      "aov": "Average order value",
+      "margin": "Margin",
+      "frequency": "Orders per year",
+      "years": "Years as a customer"
+    },
+    "outputs": {
+      "payback": "Payback period",
+      "cac": "CAC",
+      "firstOrder": "First-order profit after CAC",
+      "ordersToPayback": "Orders to pay back CAC",
+      "ltvCac": "LTV:CAC"
+    }
+  },
+  "retention-rate-calculator": {
+    "h1": "Retention and churn calculator",
+    "intro": "See how many customers you keep and lose in a period, how long an average customer stays, and the right way to turn yearly churn into monthly.",
+    "formula": "Lost = Start + New − End\nRetention = (End − New) ÷ Start\nChurn = Lost ÷ Start\nAverage lifetime = 1 ÷ churn (in periods)\nMonthly churn from annual = 1 − (1 − annual)^(1/12)",
+    "inputs": {
+      "start": "Customers at the start",
+      "end": "Customers at the end",
+      "new": "New customers in the period",
+      "annual": "Annual churn to convert"
+    },
+    "outputs": {
+      "retention": "Retention rate",
+      "churn": "Churn rate",
+      "lost": "Customers lost",
+      "lifetime": "Average lifetime (periods)",
+      "monthlyFromAnnual": "Monthly churn from annual",
+      "naive": "Annual ÷ 12 (understates)"
+    }
+  },
+  "loyalty-program-roi-calculator": {
+    "h1": "Loyalty program ROI calculator",
+    "intro": "Before you launch a loyalty program, see what a higher repeat rate is worth in extra customers, revenue and profit over a year.",
+    "formula": "Extra repeat customers = Customers × (rate with program − rate now)\nExtra revenue per month = Extra customers × AOV\nExtra revenue per year = Extra customers × AOV × repeat orders per year\nExtra profit per year = Extra revenue per year × margin",
+    "inputs": {
+      "customers": "Customers per month",
+      "aov": "Average order value",
+      "now": "Repeat rate now",
+      "with": "Repeat rate with the program",
+      "repeats": "Repeat orders per year",
+      "margin": "Margin"
+    },
+    "outputs": {
+      "profit": "Extra profit per year",
+      "extraCustomers": "Extra repeat customers",
+      "monthly": "Extra revenue per month",
+      "yearly": "Extra revenue per year"
+    }
+  },
+  "conversion-rate-calculator": {
+    "h1": "Conversion rate calculator",
+    "intro": "See your conversion rate and revenue per visitor, and what reaching a target conversion rate would add to revenue with the same traffic.",
+    "formula": "Conversion rate = Orders ÷ Sessions\nRPV = Revenue ÷ Sessions\nAOV = Revenue ÷ Orders\nOrders at target = Sessions × target rate\nExtra revenue = (Orders at target − orders) × AOV",
+    "inputs": {
+      "sessions": "Sessions",
+      "orders": "Orders",
+      "revenue": "Revenue",
+      "target": "Target conversion rate"
+    },
+    "outputs": {
+      "rate": "Conversion rate",
+      "rpv": "Revenue per visitor",
+      "aov": "Average order value",
+      "ordersAtTarget": "Orders at the target rate",
+      "extra": "Extra revenue at the target rate"
+    }
+  },
+  "cart-abandonment-calculator": {
+    "h1": "Cart abandonment calculator",
+    "intro": "See how much revenue is left in checkouts people start and don't finish, and what a recovery message on WhatsApp or email could bring back.",
+    "formula": "Abandonment rate = 1 − completed ÷ started\nRevenue left = (Started − completed) × AOV\nRecoverable = Revenue left × recovery rate",
+    "inputs": {
+      "started": "Checkouts started",
+      "completed": "Orders completed",
+      "aov": "Average order value",
+      "recovery": "Recovery rate"
+    },
+    "outputs": {
+      "rate": "Abandonment rate",
+      "lost": "Revenue left in checkouts",
+      "recoverable": "Revenue you could recover",
+      "carts": "Abandoned checkouts"
+    }
+  },
+  "ab-test-duration-calculator": {
+    "h1": "A/B test duration calculator",
+    "intro": "Find out how many visitors each version needs and how many days your test must run before you can trust the result.",
+    "formula": "p₂ = p₁ × (1 + lift)\nn per variant = (z_α × √(2p̄(1 − p̄)) + z_β × √(p₁(1 − p₁) + p₂(1 − p₂)))²\n                ÷ (p₂ − p₁)²\nDays = n ÷ (daily visitors ÷ 2), at least 7",
+    "inputs": {
+      "daily": "Visitors per day",
+      "rate": "Current conversion rate",
+      "lift": "Smallest lift to detect",
+      "confidence": "Confidence"
+    },
+    "outputs": {
+      "days": "Days to run",
+      "perVariant": "Visitors per variant",
+      "total": "Total visitors",
+      "conversions": "Conversions per variant"
+    },
+    "options": {
+      "95": "95%",
+      "99": "99%"
+    }
+  },
+  "email-list-value-calculator": {
+    "h1": "Email list value calculator",
+    "intro": "See what your email list earns each month, what each subscriber is worth over a year, and whether email pays for its cost.",
+    "formula": "Revenue per send = Open rate × click-to-open × conversion × AOV\nMonthly revenue = Revenue per send × sends × subscribers\nProfit = Monthly revenue × margin − email cost\nValue per subscriber per year = Revenue per send × sends × 12",
+    "inputs": {
+      "subscribers": "Subscribers",
+      "sends": "Emails per month",
+      "open": "Open rate",
+      "click": "Click-to-open rate",
+      "cvr": "Click → order rate",
+      "aov": "Average order value",
+      "cost": "Email cost per month",
+      "margin": "Margin"
+    },
+    "outputs": {
+      "monthly": "Email revenue per month",
+      "profit": "Profit after email cost",
+      "roi": "ROI",
+      "perSubscriber": "Value per subscriber per year",
+      "perSend": "Revenue per subscriber per send"
+    }
+  },
+  "reorder-point-calculator": {
+    "h1": "Reorder point calculator",
+    "intro": "Know when to reorder and how much: reorder point and safety stock by two methods, plus the order size that keeps ordering and holding costs lowest.",
+    "formula": "Reorder point = Daily sales × lead time + safety stock\nSafety (max method) = Peak daily × longest lead − daily × lead\nSafety (statistical) = z × √(lead × σ_demand² + daily² × σ_lead²)\nEOQ = √(2 × yearly demand × order cost ÷ (unit cost × holding %))",
+    "inputs": {
+      "daily": "Average units sold per day",
+      "lead": "Supplier lead time",
+      "peak": "Peak units per day",
+      "longest": "Longest lead time",
+      "demandSd": "Daily demand variation (σ)",
+      "leadSd": "Lead time variation (σ)",
+      "service": "Service level",
+      "orderCost": "Cost per purchase order",
+      "unitCost": "Unit cost",
+      "holding": "Holding cost per year"
+    },
+    "outputs": {
+      "rop": "Reorder point (statistical)",
+      "safety": "Safety stock (statistical)",
+      "ropMax": "Reorder point (max method)",
+      "safetyMax": "Safety stock (max method)",
+      "eoq": "Order quantity (EOQ)",
+      "ordersPerYear": "Orders per year"
+    },
+    "options": {
+      "90": "90%",
+      "95": "95%",
+      "99": "99%"
+    }
+  },
+  "inventory-turnover-calculator": {
+    "h1": "Inventory turnover calculator",
+    "intro": "See how fast your stock sells, what it earns for every unit of money tied up in it, and how many days you have left before you run out.",
+    "formula": "Turnover = COGS ÷ average inventory value\nDays to sell = 365 ÷ turnover\nGMROI = (Revenue − COGS) ÷ average inventory value\nDays left = Units in stock ÷ units sold per day\nReorder in = Days left − lead time",
+    "inputs": {
+      "cogs": "COGS per year",
+      "inventory": "Average inventory value",
+      "revenue": "Revenue per year",
+      "stock": "Units in stock",
+      "daily": "Units sold per day",
+      "lead": "Supplier lead time"
+    },
+    "outputs": {
+      "daysLeft": "Days of stock left",
+      "reorderIn": "Reorder in",
+      "turnover": "Turnover per year",
+      "daysToSell": "Days to sell inventory",
+      "gmroi": "GMROI"
+    }
+  },
+  "sales-forecast-calculator": {
+    "h1": "Sales forecast calculator",
+    "intro": "Project where steady monthly growth takes your revenue: month by month, the final month and the total for the period.",
+    "formula": "Month n revenue = Base × (1 + growth)^n\nTotal = sum of months 1 to n\nGrowth vs today = Final month ÷ base − 1",
+    "inputs": {
+      "base": "Revenue this month",
+      "growth": "Monthly growth",
+      "months": "Months ahead"
+    },
+    "outputs": {
+      "final": "Revenue in the final month",
+      "total": "Total over the period",
+      "growth": "Growth vs today",
+      "trend": "Trend"
+    }
+  },
+  "volumetric-weight-calculator": {
+    "h1": "Volumetric weight calculator",
+    "intro": "Couriers bill the bigger of the actual weight and the space a parcel takes. See which one you are paying for.",
+    "formula": "Volumetric weight = L × W × H (cm) ÷ divisor\nChargeable weight = max(actual, volumetric)",
+    "inputs": {
+      "length": "Length",
+      "width": "Width",
+      "height": "Height",
+      "actual": "Actual weight",
+      "divisor": "Courier divisor"
+    },
+    "outputs": {
+      "chargeable": "Chargeable weight",
+      "volumetric": "Volumetric weight",
+      "billedOn": "Billed on"
+    },
+    "choices": {
+      "box": "Box size",
+      "actual": "Actual weight"
+    }
+  }
+}
